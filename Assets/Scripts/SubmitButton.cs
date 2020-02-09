@@ -10,24 +10,22 @@ public class SubmitButton : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        print("Button init");
     }
 
     // Update is called once per frame
-    void Update()
+    /*void Update()
     {
         
-    }
+    }*/
 
     private void OnMouseDown()
     {
-        print("click");
         ValidateSubmission();
     }
 
     private void ValidateSubmission()
     {
-        if(DollarBill.GetAmount() == MainScript.GetCost())
+        if(Game.GetAmount() == Game.GetCost())
         {
             print("You got it! Congrats!");
         }
@@ -35,5 +33,7 @@ public class SubmitButton : MonoBehaviour
         {
             print("Better luck next time");
         }
+
+        Game.ResetGame();
     }
 }

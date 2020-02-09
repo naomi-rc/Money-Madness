@@ -11,7 +11,6 @@ public class Game : MonoBehaviour
     private static GameObject AmountValue;
     private static double Amount;
 
-    // Start is called before the first frame update
     void Start()
     {
         CostText = GameObject.Find("CostText");        
@@ -19,12 +18,6 @@ public class Game : MonoBehaviour
         AmountValue = GameObject.Find("AmountValue");
         AmountTextMesh = (TextMesh)AmountValue.GetComponent("TextMesh");
         ResetGame();
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
         
     }
 
@@ -56,6 +49,4 @@ public class Game : MonoBehaviour
         CostTextMesh.text = "$" + Cost.ToString("F");
         SetAmount(0);
     }
-
-    
 }

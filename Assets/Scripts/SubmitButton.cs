@@ -1,22 +1,19 @@
-﻿//using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 
 public class SubmitButton : MonoBehaviour
 {
-    
-    // Start is called before the first frame update
+    private static GameObject GameStatus;
+    private static TextMesh GameStatusTextMesh;
+    private int TimeDelay = 2;
+
     void Start()
     {
+        GameStatus = GameObject.Find("GameStatus");
+        GameStatusTextMesh = (TextMesh)GameStatus.GetComponent("TextMesh");
     }
-
-    // Update is called once per frame
-    /*void Update()
-    {
-        
-    }*/
 
     private void OnMouseDown()
     {
@@ -27,13 +24,21 @@ public class SubmitButton : MonoBehaviour
     {
         if(Game.GetAmount() == Game.GetCost())
         {
-            print("You got it! Congrats!");
+            StartCoroutine(ShowMessage("Awesome!", TimeDelay));
         }
         else
         {
-            print("Better luck next time");
+            StartCoroutine(ShowMessage("Ooops!", TimeDelay));           
         }
 
         Game.ResetGame();
+    }
+
+    IEnumerator ShowMessage (string message, int timeDelay)
+    {
+        GameStatusTextMesh.text = message;
+        GameStatus.SetActive(true);
+        yield return new WaitForSeconds(timeDelay);
+        GameStatus.SetActive(false);
     }
 }

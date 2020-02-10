@@ -8,8 +8,15 @@ public class Game : MonoBehaviour
     private static GameObject CostText;
     private static TextMesh CostTextMesh;
     private static TextMesh AmountTextMesh;
+    private static GameObject GameStatus;
+    private static TextMesh GameStatusTextMesh;
     private static GameObject AmountValue;
     private static double Amount;
+    private int TimeDelay = 2;
+    public static AudioSource MoneyAudio;
+    public static AudioSource CashCorrect;
+    public static AudioSource CashIncorrect;
+
 
     void Start()
     {
@@ -17,6 +24,10 @@ public class Game : MonoBehaviour
         CostTextMesh = (TextMesh)CostText.GetComponent("TextMesh");
         AmountValue = GameObject.Find("AmountValue");
         AmountTextMesh = (TextMesh)AmountValue.GetComponent("TextMesh");
+        GameStatus = GameObject.Find("GameStatus");
+        GameStatusTextMesh = (TextMesh)GameStatus.GetComponent("TextMesh");
+        //audioSource = new AudioSource();
+        //audioSource.
         ResetGame();
         
     }
@@ -34,6 +45,7 @@ public class Game : MonoBehaviour
         }
         else
         {
+            //MoneyAudio.Play();
             Amount += amount;
             ((TextMesh)AmountTextMesh).text = "$" + Amount;            
         }
@@ -47,6 +59,35 @@ public class Game : MonoBehaviour
     {
         Cost = Random.Range(1, 100);
         CostTextMesh.text = "$" + Cost.ToString("F");
+        SetAmount(0);
+    }
+
+    public void EnterAmount()
+    {
+        if (Game.GetAmount() == Game.GetCost())
+        {
+            StartCoroutine(ShowMessage("Awesome!", TimeDelay));
+            //CashCorrect.Play();
+        }
+        else
+        {
+            StartCoroutine(ShowMessage("Ooops!", TimeDelay));
+           // CashIncorrect.Play();
+        }
+
+        Game.ResetGame();
+    }
+
+    IEnumerator ShowMessage(string message, int timeDelay)
+    {
+        GameStatusTextMesh.text = message;
+        GameStatus.SetActive(true);
+        yield return new WaitForSeconds(timeDelay);
+        GameStatus.SetActive(false);
+    }
+
+    public void ResetAmount()
+    {
         SetAmount(0);
     }
 }

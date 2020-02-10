@@ -11,27 +11,42 @@ public class Game : MonoBehaviour
     private static GameObject GameStatus;
     private static TextMesh GameStatusTextMesh;
     private static GameObject AmountValue;
+    private static GameObject MainCamera;
     private static double Amount;
     private int TimeDelay = 2;
     public static AudioSource MoneyAudio;
+    public static AudioClip MoneyAudioClip;
     public static AudioSource CashCorrect;
     public static AudioSource CashIncorrect;
-
+ 
+   
 
     void Start()
     {
+        MainCamera = GameObject.Find("Main Camera");
         CostText = GameObject.Find("CostText");        
         CostTextMesh = (TextMesh)CostText.GetComponent("TextMesh");
         AmountValue = GameObject.Find("AmountValue");
         AmountTextMesh = (TextMesh)AmountValue.GetComponent("TextMesh");
         GameStatus = GameObject.Find("GameStatus");
         GameStatusTextMesh = (TextMesh)GameStatus.GetComponent("TextMesh");
-        //audioSource = new AudioSource();
-        //audioSource.
+        MoneyAudio = MainCamera.AddComponent<AudioSource>();
+        MoneyAudio.clip = Resources.Load("Audio/MoneyAudio") as AudioClip;
+
         ResetGame();
         
     }
 
+
+    public static void TestAudio()
+    {
+        //GameObject MainCamera = GameObject.Find("Main Camera");
+        //CostTextMesh = (TextMesh)CostText.GetComponent("TextMesh");
+
+        //AudioSource audioSource = camera.AddComponent<AudioSource>();
+        //audioSource.clip = Resources.Load("Audio/MoneyAudio") as AudioClip;
+        //audioSource.Play();
+    }
     public static double GetAmount()
     {
         return Amount;
@@ -45,7 +60,7 @@ public class Game : MonoBehaviour
         }
         else
         {
-            //MoneyAudio.Play();
+            MoneyAudio.Play();
             Amount += amount;
             ((TextMesh)AmountTextMesh).text = "$" + Amount;            
         }

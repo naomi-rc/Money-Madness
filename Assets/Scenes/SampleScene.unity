@@ -1810,13 +1810,13 @@ PrefabInstance:
     - target: {fileID: 4297726448565709656, guid: 11f844c7aee44264fb88c6ab5fabf6dc,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4297726448565709656, guid: 11f844c7aee44264fb88c6ab5fabf6dc,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 519420030}
     - target: {fileID: 4297726448565709656, guid: 11f844c7aee44264fb88c6ab5fabf6dc,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
@@ -1830,12 +1830,12 @@ PrefabInstance:
     - target: {fileID: 4297726448565709656, guid: 11f844c7aee44264fb88c6ab5fabf6dc,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: 
+      value: EnterAmount
       objectReference: {fileID: 0}
     - target: {fileID: 4297726448565709656, guid: 11f844c7aee44264fb88c6ab5fabf6dc,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: 
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 11f844c7aee44264fb88c6ab5fabf6dc, type: 3}

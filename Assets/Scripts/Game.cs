@@ -15,9 +15,8 @@ public class Game : MonoBehaviour
     private static double Amount;
     private int TimeDelay = 2;
     public static AudioSource MoneyAudio;
-    public static AudioClip MoneyAudioClip;
-    public static AudioSource CashCorrect;
-    public static AudioSource CashIncorrect;
+    public static AudioSource CashCorrectAudio;
+    public static AudioSource CashIncorrectAudio;
  
    
 
@@ -30,23 +29,18 @@ public class Game : MonoBehaviour
         AmountTextMesh = (TextMesh)AmountValue.GetComponent("TextMesh");
         GameStatus = GameObject.Find("GameStatus");
         GameStatusTextMesh = (TextMesh)GameStatus.GetComponent("TextMesh");
+
         MoneyAudio = MainCamera.AddComponent<AudioSource>();
         MoneyAudio.clip = Resources.Load("Audio/MoneyAudio") as AudioClip;
+        CashCorrectAudio = MainCamera.AddComponent<AudioSource>();
+        CashCorrectAudio.clip = Resources.Load("Audio/CashCorrect") as AudioClip;
+        CashIncorrectAudio = MainCamera.AddComponent<AudioSource>();
+        CashIncorrectAudio.clip = Resources.Load("Audio/CashIncorrect") as AudioClip;
 
         ResetGame();
         
     }
 
-
-    public static void TestAudio()
-    {
-        //GameObject MainCamera = GameObject.Find("Main Camera");
-        //CostTextMesh = (TextMesh)CostText.GetComponent("TextMesh");
-
-        //AudioSource audioSource = camera.AddComponent<AudioSource>();
-        //audioSource.clip = Resources.Load("Audio/MoneyAudio") as AudioClip;
-        //audioSource.Play();
-    }
     public static double GetAmount()
     {
         return Amount;
@@ -82,12 +76,12 @@ public class Game : MonoBehaviour
         if (Game.GetAmount() == Game.GetCost())
         {
             StartCoroutine(ShowMessage("Awesome!", TimeDelay));
-            //CashCorrect.Play();
+            CashCorrectAudio.Play();
         }
         else
         {
             StartCoroutine(ShowMessage("Ooops!", TimeDelay));
-           // CashIncorrect.Play();
+            CashIncorrectAudio.Play();
         }
 
         Game.ResetGame();
